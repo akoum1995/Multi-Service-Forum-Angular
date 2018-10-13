@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+                <div class="col-md-12">
+                        <div class="card">
+                            <form #f2="ngForm" class="form-horizontal" (ngSubmit)=addgroup(f2)>
+                                <div class="card-header card-header-text" data-background-color="rose">
+                                    <h4 class="card-title">Add Group</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="row">
+                                        <label class="col-sm-2 label-on-left">Name</label>
+                                        <div class="col-sm-7">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"></label>
+                                                <input class="form-control" #name="ngModel" ngModel type="text" name="name" required>
+                                                <small [hidden]="name.valid||!name.touched" class="text-danger">
+                                                        required
+                                                      </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn btn-rose btn-fill" [disabled]="!f2.valid">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+        </div>
+    </div>
+</div>

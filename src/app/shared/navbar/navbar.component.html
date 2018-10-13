@@ -1,0 +1,92 @@
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container-fluid">
+        <!--
+        <div class="navbar-minimize">
+            <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
+                <i class="material-icons visible-on-sidebar-regular">more_vert</i>
+                <i class="material-icons visible-on-sidebar-mini">view_list</i>
+            </button>
+        </div>
+        -->
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"> MSF </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <div *ngIf="!As.isLoggedIn()">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="pages/register">
+                            <i class="material-icons">person_add</i>
+                            Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/login">
+                            <i class="material-icons">fingerprint</i>
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="As.isLoggedIn()">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li>
+                        <div style="width:400px;padding-top: 10px;padding-left: 15‒;padding-left: 15px;padding-right: 15px;">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                    aria-valuemax="100" style="width:60%;animation: progress-bar-stripes 2s linear infinite;">
+                                    60% Complete
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+                    <li class="dropdown" title="groups">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                            <i class="fa fa-users" aria-hidden="true"></i>                            
+                        </a>
+                        <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/group/add">Create</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                   <a href="/group/list">Show groups</a>
+                                </li>
+                            </ul>
+                    </li>
+                    <li title="chat">
+                            <a href="/chat">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a style="padding-top: 0px !important;text-transform: none !important;" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img height="50" width="50" [src]="As.currentUser().image!='null'?As.currentUser().image:'../assets/img/placeholder.jpg'" class="profile-image img-circle"> {{As.currentUser().username}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/user">
+                                    <i class="fa fa-cog"></i> Account</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a (click)="logout()">
+                                    <i class="fa fa-sign-out"></i> Sign-out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator hidden-lg hidden-md"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

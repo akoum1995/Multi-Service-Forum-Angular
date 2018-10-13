@@ -1,0 +1,128 @@
+<div class="col-lg-4 col-md-6">
+        <div class="card card-product">
+            <div class="card-image" data-header-animation="true">
+                <a href="#pablo">
+                    <img class="img" src="../assets/img/card-2.jpeg">
+                </a>
+            </div>
+            <div class="card-content">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                        <i class="material-icons">build</i> Fix Header!
+                    </button>
+                    <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View members" data-toggle="modal" data-target="#viewm">
+                        <i class="material-icons">art_track</i>
+                    </button>
+                    <span *ngIf="!in">
+                            <button *ngIf="!(user==groupop.creator?.user?.idMember)" (click)="joingroup()" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Join group">
+                                    <i class="material-icons">person_add</i>
+                            </button>
+                    </span>
+                    <span *ngIf="in">
+                            <button *ngIf="!(user==groupop.creator?.user?.idMember)" (click)="leavegroup()" type="button" class="btn btn-warning btn-simple" rel="tooltip" data-placement="bottom" title="Leave group">
+                                    <i class="fa fa-user-times" aria-hidden="true"></i>                                    
+                            </button>
+                    </span>
+                    
+                    <button *ngIf="user==groupop.creator?.user?.idMember" (click)="removegroup()" type="button" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove group">
+                            <i class="material-icons">close</i>
+                    </button>
+                    <button *ngIf="user==groupop.creator?.user?.idMember" data-toggle="modal" data-target="#myModal"  (click)="editgroup()" type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit group">
+                            <i class="material-icons">edit</i>
+                                            </button>
+                </div>
+                <h4 class="card-title">
+                    {{groupop.name}} 
+                </h4>
+                <div class="card-description">
+                        Created by {{groupop.creator?.user?.username}} 
+                        <br>
+                        On {{groupop.creationDate|date:'medium'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Classic Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>
+                        <h4 class="modal-title">Edit Group </h4>
+                    </div>
+                    <div class="modal-body">
+                            <form #f2="ngForm" class="form-horizontal" (ngSubmit)=editgroup(f2)>
+                                    <div class="card-content">
+                                        <div class="row">
+                                            <label class="col-sm-2 label-on-left">Name</label>
+                                            <div class="col-sm-7">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label"></label>
+                                                    <input class="form-control" #name="ngModel" ngModel type="text" name="name" value="{{groupop.name}}" required>
+                                                    <small [hidden]="name.valid||!name.touched" class="text-danger">
+                                                            required
+                                                          </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <button type="submit" class="btn btn-rose btn-fill" [disabled]="!f2.valid">Add</button>
+                                    </div>
+                                </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+            <!-- Classic Modal -->
+    <div class="modal fade" id="viewm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>
+                        <h4 class="modal-title">Members </h4>
+                    </div>
+                    <div class="modal-body">
+                        
+
+
+                            <div class="table-responsive">
+                                    <table class="table table-shopping">
+                                            <thead>
+                                                <tr>
+                                                  <th class="text-left">Picture</th>
+                                                  <th class="text-left">Username</th>
+                                                </tr>
+                                            </thead>
+                                          <tbody>
+                                              <tr *ngFor="let u of usersgroup">
+                                                  <td>
+                                                       <img class="profile-image img-circle" height="50" width="50" [src]="traitPic(u.image)!=null?traitPic(u.image):'assets/img/placeholder.jpg'" alt="..." style="border: solid #ddd 1px;">
+                                                  </td>
+                                                  <td class="td-name">
+                                                      <a href="/profile?id={{u.idMember}}">{{u.username}}</a>
+                                                  </td>
+                                              </tr>                                              
+                                          </tbody>
+                                    </table>
+                                </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+    

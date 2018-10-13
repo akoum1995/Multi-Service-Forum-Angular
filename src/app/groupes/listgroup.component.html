@@ -1,0 +1,7 @@
+<div class="main-content">
+    <div class="container-fluid">
+            <div class="row">
+                    <cart *ngFor="let arr of myArr" (deletedgroup)="deletegroup($event)" [group]="arr"></cart>
+            </div>
+    </div>
+</div>

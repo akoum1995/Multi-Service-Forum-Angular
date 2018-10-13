@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="text-align: inherit !important;" class="card">
+
+                    <div class="card-header card-header-icon" data-background-color="rose">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                        <div class="wizard-arbi">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <img [src]="As.currentUser().image!='null'?As.currentUser().image:'../assets/img/placeholder.jpg'" class="picture-src" id="wizardPicturePreview" title="" />
+                                    <input type="file" id="wizard-picture" title="update picture">
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card-content">
+                        <h4 class="card-title">Profile -
+                            <small class="category">Edit your profile</small>
+                        </h4>
+                        <br>
+                        <form #f="ngForm" (ngSubmit)="updateUser(f)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">First Name</label>
+                                        <input ngModel #firstname="ngModel" name="firstname" type="text" class="form-control" [ngModel]="As.currentUser().firstName!='null'?As.currentUser().firstName:null">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Last Name</label>
+                                        <input ngModel #lastname="ngModel" name="lastname" type="text" class="form-control" [ngModel]="As.currentUser().lastName!='null'?As.currentUser().lastName:null">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                  <label class="label-control">Phone number</label>
+                                                  <input ngModel #phonenumber="ngModel" name="phonenumber" type="number" class="form-control" [ngModel]="As.currentUser().phoneNumber!='null'?As.currentUser().phoneNumber:null" />
+                                            </div>
+                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                          <label class="label-control">Birthdate</label>
+                                          <input type="text" class="form-control datepicker" name="birthdate" [ngModel]="As.currentUser().birthDate!='null'?As.currentUser().birthDate:null" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <select ngModel #gender="ngModel" name="gender" class="selectpicker" data-style="btn btn-primary btn-round" data-size="7">
+                                                    <option disabled >Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                            </select>                                                                        
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <div class="progress" style="margin-top: 20px;">
+                                            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                                aria-valuemax="100" [ngStyle]="style">
+                                                {{pp}}% Complete
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                                                   
+                            </div>
+                            
+                            <button class="btn btn-rose pull-right">Update Profile</button>
+                            <a href="/profile?id={{As.currentUser().user_id}}" class="btn btn-primary pull-right">Show Profile</a>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

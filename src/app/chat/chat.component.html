@@ -1,0 +1,103 @@
+<div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-text" data-background-color="orange">
+                            <h4 class="card-title">Messanger</h4>
+                        </div>
+                        
+                        <div class="card-content">
+                                <div class="body1">
+                            <div class="container2 clearfix">
+                                <div class="people-list" id="people-list">
+                                        <div class="search">
+                                          <input #p type="text" placeholder="search" />
+                                          <i class="fa fa-search"></i>
+                                        </div>
+                                        <ul class="list style-1" style="
+                                        overflow: auto;
+                                    ">
+                                          <li *ngFor="let user of OtherUsers|list2:p.value" class="clearfix">
+                                            <a
+                                                (click)="selectuser(user)"
+                                            ><img 
+                                            style="width: 55px !important;
+                                                   height: 55px !important;
+                                                   border-radius: 50%;"
+                                             [src]="user.pic!=null?user.pic:'assets/img/placeholder.jpg'" alt="avatar" /></a>
+                                            <div class="about">
+                                              <div class="name">{{user.name}}</div>
+                                            </div>
+                                          </li>  
+                                        </ul>
+                                      </div>
+                                      
+                                      <div *ngIf="chatWith" class="chat" style="
+                                      padding-bottom: 20px;width: 1006px;">
+                                        <div class="chat-header clearfix">
+                                          <img [src]="chatWith.pic!=null?chatWith.pic:'assets/img/placeholder.jpg'" alt="avatar"
+                                          style="width: 55px !important;
+                                          height: 55px !important;
+                                          border-radius: 50%;"
+                                           />
+                                          
+                                          <div class="chat-about">
+                                            <div class="chat-with">Chat with {{chatWith.name}}</div>
+                                          </div>
+                                        </div> <!-- end chat-header -->
+                                        
+                                        <div class="chat-history">
+                                          <ul>
+                                            <li *ngFor="let msg of allMessages |async|list:chatWith.iduser" class="clearfix">
+                                                <div *ngIf="!me(msg.id_user_s)">
+                                                        <div class="message-data align-right">
+                                                                <span class="message-data-time" >{{msg.date| date:'MMM dd, HH:mm'}}</span>
+                                                                <span class="message-data-name" >{{chatWith.name}}</span> <i class="fa fa-circle me"></i>
+                                                                
+                                                              </div>
+                                                              <div class="message other-message float-right">
+                                                                    {{msg.content}}
+                                                              </div>
+                                                </div>
+
+                                                <div *ngIf="me(msg.id_user_s)">
+                                                        <div class="message-data">
+                                                                <span class="message-data-name"><i class="fa fa-circle online"></i>{{user.username}} </span>
+                                                                <span class="message-data-time">{{msg.date| date:'MMM dd, HH:mm'}}</span>
+                                                              </div>
+                                                              <div class="message my-message">
+                                                                    {{msg.content}}                                                              </div>
+                                                            </div>
+                                              
+                                            </li>
+                                            
+                                            <!-- <li>
+                                              <div class="message-data">
+                                                <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+                                                <span class="message-data-time">10:12 AM, Today</span>
+                                              </div>
+                                              <div class="message my-message">
+                                                Are we meeting today? Project has been already finished and I have results to show you.
+                                              </div>
+                                            </li>                                            -->
+                                          </ul>
+                                          
+                                        </div> <!-- end chat-history -->
+                                        
+                                        <div class="chat-message clearfix">
+                                          <textarea #txt name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+                                          <button (click)="send(txt)">Send</button>
+                                  
+                                        </div> <!-- end chat-message -->
+                                    </div> 
+                                      </div>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

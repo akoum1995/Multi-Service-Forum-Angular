@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            <img class="img" [src]="user?.image!=null?user.image:'assets/img/placeholder.jpg'" />
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h6 class="category text-gray">{{user?.role}}</h6>
+                        <h4 class="card-title">{{user?.username}}</h4>
+                        <p class="description">
+                            Firstname: {{user?.firstName?user?.firstName:'N/D'}}
+                        </p>
+                        <p class="description">
+                                Lastname:  {{user?.lastName?user?.lastName:'N/D'}}
+                        </p>
+                        <p class="description">
+                                Gender:  {{user?.gender?user?.gender:'N/D'}}
+                        </p>
+
+                        <a *ngIf="!showbtn()" href="/chat?id={{user?.idMember}}" class="btn btn-rose btn-round">Send Message</a>
+                        <a *ngIf="showbtn()" href="/user" class="btn btn-rose btn-round">Update profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
